@@ -3,7 +3,6 @@ import { ZodError } from "zod";
 import { Prisma } from "../generated/prisma/client";
 import { AppError } from "../utils/app.error";
 
-// src/middleware/error.ts
 export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   // Express requires all 4 params for error middleware.
   void req;
