@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler } from "express";
 import { ZodError } from "zod";
-import { Prisma } from "../generated/prisma/client";
+import { Prisma } from "@prisma/client";
 import { AppError } from "../utils/app.error";
 
 export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
