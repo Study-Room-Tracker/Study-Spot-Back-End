@@ -7,6 +7,7 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 
 const startServer = async () => {
   try {
+    console.info("DB Connected");
     const app = createApp();
 
     app.listen(PORT, () => {
