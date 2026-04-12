@@ -33,6 +33,8 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
     // Handle specific Prisma error codes
     // P2002: Unique constraint failed
     // P2025: Record not found
+    // JsonWebTokenError: Invalid token
+    // TokenExpiredError: Token expired
     if (err.code === "P2002") {
       statusCode = 409;
       message = "Duplicate key error: A record with this value already exists.";
@@ -42,6 +44,12 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
     } else if (err.code === "P2025") {
       statusCode = 404;
       message = "Record not found.";
+    } else if (err.name === "JsonWebTokenError") {
+      statusCode = 401;
+      message = "Invalid token. Please log in again.";
+    } else if (err.name === "TokenExpiredError") {
+      statusCode = 401;
+      message = "Your session has expired. Please log in again.";
     }
   }
 
