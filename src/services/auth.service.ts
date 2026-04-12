@@ -24,6 +24,12 @@ export const registerUserService = async (data: RegisterUserTypeZ) => {
       lastName: data.lastName,
       password: hashedPassword,
     },
+    select: {
+      id: true,
+      email: true,
+      firstName: true,
+      lastName: true,
+    },
   });
 };
 
@@ -66,6 +72,6 @@ export const loginUserService = async (data: LoginUserTypeZ) => {
       expiresIn,
     },
   );
-
-  return { ...existingUser, token };
+  const { password, ...userExludingPassword } = existingUser; // we don't want to return the password to the client, so we destructure it out and return the rest of the user data along with the token
+  return { ...userExludingPassword, token };
 };
