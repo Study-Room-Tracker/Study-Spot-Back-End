@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 // Have to add tokenization system here where user can only update their own page in service
 export const updateUserService = async (
   userId: number,
-  data: Partial<updateUserTypeZ>,
+  data: updateUserTypeZ,
 ) => {
   const existingUser = await prisma.user.findUnique({
     where: { id: userId },
