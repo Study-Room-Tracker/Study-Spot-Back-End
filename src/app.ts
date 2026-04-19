@@ -12,11 +12,11 @@ export const createApp = () => {
   app.use("/api/auth", authRoutes);
 
   app.use("/api/users", userRoutes);
-  app.use(errorHandler);
 
   app.get("/health", (req: Request, res: Response) => {
     res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
   });
+  app.use(errorHandler);
 
   return app;
 };

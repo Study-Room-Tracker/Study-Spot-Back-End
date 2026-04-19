@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { AppError } from "../utils/app.error.js";
+import { AppError } from "../utils/app.error";
 
 // This allows us to add a `user` property to the Express Request object
 declare global {
