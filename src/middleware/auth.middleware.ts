@@ -8,7 +8,7 @@ declare global {
     interface Request {
       user?: {
         id: number;
-        role: string;
+        role: "USER" | "ADMIN";
       };
     }
   }
@@ -39,14 +39,12 @@ export const protect = async (
 };
 
 // Middleware to restrict access to certain routes based on user roles
-type UserRole = "USER" | "ADMIN";
 
-export const restrictTo = (...roles: UserRole[]) => {
+export const restrictTo = (...roles: ("USER" | "ADMIN")[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const user = req.user;
-
-    if (!user || !roles.includes(user.role as UserRole)) {
+    if (!req.user || !roles.includes(req.user.role)) {
       return res.status(403).json({
+        success: false,
         message: "Forbidden, you do not have the required permissions",
       });
     }

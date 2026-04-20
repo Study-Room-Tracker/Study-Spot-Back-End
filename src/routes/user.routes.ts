@@ -12,8 +12,8 @@ import { protect, restrictTo } from "../middleware/auth.middleware";
 const router = Router();
 
 // Have to add restrict to admin role here
-router.get("/getAllUsers", getAllUsersController);
-router.get("/getUser/:id", getUserByIdController);
+router.get("/getAllUsers", protect, restrictTo("ADMIN"), getAllUsersController);
+router.get("/getUser/:id", protect, restrictTo("ADMIN"), getUserByIdController);
 router.patch(
   "/updateUser/:id",
   protect,

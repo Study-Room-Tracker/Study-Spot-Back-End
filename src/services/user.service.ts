@@ -44,7 +44,7 @@ export const updateUserByIdService = async (
     throw new AppError(`User with ${providedUserId} not found`, 404);
   }
   if (providedUserId !== userId) {
-    throw new AppError("Forbidden: You can only update your own profile", 403); // This works by comparing the userId from the database with the providedUserId. If they don't match, it means they are trying to update someone else's profile, and we throw a 403 Forbidden error.
+    throw new AppError("Forbidden: You can only update your own profile", 403); // This works by extracting the userId from the token and comparing it with the providedUserId in the request parameters. If they don't match, it means they are trying to update someone else's profile, and we throw a 403 Forbidden error.
   }
 
   const hashedPassword = data.password // If password is provided, hash it, otherwise keep it undefined
