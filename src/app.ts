@@ -2,6 +2,7 @@ import express, { type Request, type Response } from "express";
 import { errorHandler } from "./middleware/error.middleware";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
+import roomRoutes from "./routes/room.routes";
 
 export const createApp = () => {
   const app = express();
@@ -12,6 +13,8 @@ export const createApp = () => {
   app.use("/api/auth", authRoutes);
 
   app.use("/api/users", userRoutes);
+
+  app.use("/api/rooms", roomRoutes);
 
   app.get("/health", (req: Request, res: Response) => {
     res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
