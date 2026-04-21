@@ -29,6 +29,8 @@ export const registerUserService = async (data: RegisterUserTypeZ) => {
       email: true,
       firstName: true,
       lastName: true,
+      createdAt: true,
+      updatedAt: true,
     },
   });
 };

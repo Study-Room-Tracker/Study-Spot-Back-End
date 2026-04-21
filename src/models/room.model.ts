@@ -8,6 +8,7 @@ export const createRoomValidation = z.object({
         message: "Room Status must be either FREE or FULL",
       }),
     })
+    .partial()
     .strict(),
 });
 
