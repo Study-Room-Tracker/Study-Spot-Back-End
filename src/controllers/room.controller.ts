@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import {
+  changeRoomStatusSerivce,
   createNewRoomService,
   deleteRoomByIdService,
   getAllRoomsService,
@@ -85,6 +86,26 @@ export const deleteRoomByIdController = async (
       status: `Deleted room with id ${roomId} successfully`,
       data: deletedRoom,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const changeRoomStatusController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const roomId = Number(req.params.id);
+    const data = req.body;
+    const room = await changeRoomStatusSerivce(roomId, data);
+    res
+      .status(200)
+      .json({
+        status: `Updated status of room with id ${roomId} successfully`,
+        data: room,
+      });
   } catch (error) {
     next(error);
   }

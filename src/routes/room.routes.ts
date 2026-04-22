@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  changeRoomStatusController,
   createNewRoomController,
   deleteRoomByIdController,
   getAllRoomsController,
@@ -7,7 +8,10 @@ import {
   updateRoomByIdController,
 } from "../controllers/room.controller";
 import { validate } from "../middleware/validate.middleware";
-import { createRoomValidation } from "../models/room.model";
+import {
+  changeRoomStatusValidation,
+  createRoomValidation,
+} from "../models/room.model";
 import { protect, restrictTo } from "../middleware/auth.middleware";
 
 const router = Router();
@@ -33,6 +37,12 @@ router.delete(
   protect,
   restrictTo("ADMIN"),
   deleteRoomByIdController,
+);
+router.patch(
+  "/changeStatus/:id",
+  protect,
+  validate(changeRoomStatusValidation),
+  changeRoomStatusController,
 );
 
 export default router;

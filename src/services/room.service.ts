@@ -1,4 +1,4 @@
-import { createRoomTypeZ } from "../models/room.model";
+import { changeRoomStatustypeZ, createRoomTypeZ } from "../models/room.model";
 import { prisma } from "../config/db";
 import { AppError } from "../utils/app.error";
 
@@ -107,4 +107,34 @@ export const deleteRoomByIdService = async (roomId: number) => {
     },
   });
   return deletedRoom;
+};
+
+export const changeRoomStatusSerivce = async (
+  roomId: number,
+  data: changeRoomStatustypeZ,
+) => {
+  const room = await prisma.room.findFirst({
+    where: {
+      id: roomId,
+    },
+  });
+  if (!room) {
+    throw new AppError(`Room with id ${roomId} could not be found`, 404);
+  }
+  const updatedRoom = await prisma.room.update({
+    where: {
+      id: roomId,
+    },
+    data: {
+      status: data.status,
+    },
+    select: {
+      id: true,
+      name: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return updatedRoom;
 };
