@@ -11,6 +11,7 @@ import { validate } from "../middleware/validate.middleware";
 import {
   changeRoomStatusValidation,
   createRoomValidation,
+  updateRoomValidation,
 } from "../models/room.model";
 import { protect, restrictTo } from "../middleware/auth.middleware";
 
@@ -29,7 +30,7 @@ router.patch(
   "/updateRoom/:id",
   protect,
   restrictTo("ADMIN"),
-  validate(createRoomValidation),
+  validate(updateRoomValidation),
   updateRoomByIdController,
 );
 router.delete(
