@@ -3,10 +3,10 @@ import { z } from "zod";
 export const registerUserValidation = z.object({
   body: z
     .object({
-      email: z.string().email(),
-      firstName: z.string().min(1),
-      lastName: z.string().min(1),
-      password: z.string().min(6),
+      email: z.string("Please enter a valid email").email(),
+      password: z.string("Please enter a valid password").min(6),
+      firstName: z.string("Please enter a valid first name").min(1),
+      lastName: z.string("Please enter a valid last name").min(1),
     })
     .strict(),
 });
@@ -14,8 +14,8 @@ export const registerUserValidation = z.object({
 export const loginUserValidation = z.object({
   body: z
     .object({
-      email: z.string().email(),
-      password: z.string().min(6),
+      email: z.string("Please enter a valid email").email(),
+      password: z.string("Please enter a valid password").min(6),
     })
     .strict(),
 });
