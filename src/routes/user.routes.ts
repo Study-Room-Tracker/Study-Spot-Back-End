@@ -12,14 +12,14 @@ import { protect, restrictTo } from "../middleware/auth.middleware";
 const router = Router();
 
 // Have to add restrict to admin role here
-router.get("/getAllUsers", protect, restrictTo("ADMIN"), getAllUsersController);
-router.get("/getUser/:id", protect, restrictTo("ADMIN"), getUserByIdController);
+router.get("/", protect, restrictTo("ADMIN"), getAllUsersController);
+router.get("/:id", protect, restrictTo("ADMIN"), getUserByIdController);
 router.patch(
-  "/updateUser/:id",
+  "/:id",
   protect,
   validate(updateUserValidation),
   updateUserByIdController,
 );
-router.delete("/deleteUser/:id", protect, deleteUserByIdController);
+router.delete("/:id", protect, restrictTo("ADMIN"), deleteUserByIdController);
 
 export default router;

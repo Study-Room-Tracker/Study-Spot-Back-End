@@ -19,27 +19,22 @@ import { ipLimiter } from "../middleware/ip.limit";
 const router = Router();
 
 router.post(
-  "/createRoom",
+  "/",
   protect,
   restrictTo("ADMIN"),
   validate(createRoomValidation),
   createNewRoomController,
 );
-router.get("/getAllRooms", getAllRoomsController);
-router.get("/getRoom/:id", getRoomByIdController);
+router.get("/", getAllRoomsController);
+router.get("/:id", getRoomByIdController);
 router.patch(
-  "/updateRoom/:id",
+  "/:id",
   protect,
   restrictTo("ADMIN"),
   validate(updateRoomValidation),
   updateRoomByIdController,
 );
-router.delete(
-  "/deleteRoom/:id",
-  protect,
-  restrictTo("ADMIN"),
-  deleteRoomByIdController,
-);
+router.delete("/:id", protect, restrictTo("ADMIN"), deleteRoomByIdController);
 router.patch(
   "/changeStatus/:id",
   ipLimiter, // Checks the ip address of the user and limits the number of requests they can make to this endpoint to 10 requests per minute. If the user exceeds this limit, they will receive a 429 Too Many Requests response with a message indicating that they have tried to change the status too many times and should try again in 1 minute.
