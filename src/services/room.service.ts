@@ -110,7 +110,7 @@ export const deleteRoomByIdService = async (roomId: number) => {
   return deletedRoom;
 };
 
-export const changeRoomStatusSerivce = async (
+export const changeRoomStatusService = async (
   roomId: number,
   data: changeRoomStatustypeZ,
 ) => {

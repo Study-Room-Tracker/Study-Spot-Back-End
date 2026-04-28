@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  changeRoomStatusSerivce,
+  changeRoomStatusService,
   createNewRoomService,
   deleteRoomByIdService,
   getAllRoomsService,
@@ -99,13 +99,11 @@ export const changeRoomStatusController = async (
   try {
     const roomId = Number(req.params.id);
     const data = req.body;
-    const room = await changeRoomStatusSerivce(roomId, data);
-    res
-      .status(200)
-      .json({
-        status: `Updated status of room with id ${roomId} successfully`,
-        data: room,
-      });
+    const room = await changeRoomStatusService(roomId, data);
+    res.status(200).json({
+      status: `Updated status of room with id ${roomId} successfully`,
+      data: room,
+    });
   } catch (error) {
     next(error);
   }
