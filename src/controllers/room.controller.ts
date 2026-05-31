@@ -18,7 +18,7 @@ export const createNewRoomController = async (
     const room = await createNewRoomService(data);
     res
       .status(200)
-      .json({ Status: "Created a new room successfully", data: room });
+      .json({ status: "Created a new room successfully", data: room });
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,7 @@ export const getAllRoomsController = async (
     const rooms = await getAllRoomsService();
     res
       .status(200)
-      .json({ Status: "Retrieved all rooms successfully", data: rooms });
+      .json({ status: "Retrieved all rooms successfully", data: rooms });
   } catch (error) {
     next(error);
   }

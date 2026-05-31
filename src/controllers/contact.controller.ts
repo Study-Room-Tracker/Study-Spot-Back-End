@@ -13,7 +13,7 @@ export const createMessageController = async (
     const message = await createMessageService(req.body);
     res
       .status(200)
-      .json({ Status: "Message sent successfully", data: message });
+      .json({ status: "Message sent successfully", data: message });
   } catch (error) {
     next(error);
   }
@@ -28,7 +28,7 @@ export const getAllMessagesController = async (
     const messages = await getAllMessagesService();
     res
       .status(200)
-      .json({ Status: "Messages retrieved successfully", data: messages });
+      .json({ status: "Messages retrieved successfully", data: messages });
   } catch (error) {
     next(error);
   }
