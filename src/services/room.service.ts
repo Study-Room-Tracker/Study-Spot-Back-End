@@ -32,6 +32,9 @@ export const getAllRoomsService = async () => {
       createdAt: true,
       updatedAt: true,
     },
+    orderBy: {
+      id: "asc",
+    },
   });
   return rooms;
 };
